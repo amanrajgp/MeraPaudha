@@ -4,6 +4,9 @@ from openai import OpenAI
 import os
 import re
 from dotenv import load_dotenv
+from git import Repo
+
+
 
 load_dotenv()
 
@@ -70,6 +73,13 @@ def Column_preprocessing(file_name):
 
     # Save the modified DataFrame back to Excel (optional)
     df.to_excel(file_name, index=False)
+    repo_path = "/app/myrepo"  # Change to your repo path
+    file_path = os.path.join(repo_path, "output.xlsx")
+    
+    repo = Repo(repo_path)
+    repo.git.add(file_path)
+    repo.index.commit("Updated output.xlsx with new plant data")
+    repo.remote("origin").push()
 
 # Now you can use the column_pairs list in the previous code to process the data
 
@@ -154,6 +164,7 @@ def store_data_to_excel(plant_name, text, excel_file):
     # Save the combined DataFrame to the Excel file
     df_combined.to_excel(excel_file, index=False)
 
+    
     Column_preprocessing(excel_file)
 
 
