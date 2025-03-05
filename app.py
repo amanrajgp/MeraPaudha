@@ -73,7 +73,7 @@ def Column_preprocessing(file_name):
 
     # Save the modified DataFrame back to Excel (optional)
     df.to_excel(file_name, index=False)
-    repo_path = "https://github.com/amanrajgp/MeraPaudha.git"  # Change to your repo path
+    repo_path = "amanrajgp/MeraPaudha"  # Change to your repo path
     file_path = os.path.join(repo_path, "output.xlsx")
     
     repo = Repo(repo_path)
